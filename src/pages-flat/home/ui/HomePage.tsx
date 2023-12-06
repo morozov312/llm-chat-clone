@@ -1,5 +1,11 @@
 'use client';
 
+import { Navbar } from '@/widgets';
+
 export const HomePage = () => {
-  return <></>;
+  return (
+    <div>
+      <Navbar />
+    </div>
+  );
 };
