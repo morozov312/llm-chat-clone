@@ -1,5 +1,3 @@
-'use client';
-
 import { Navbar } from '@/widgets';
 
 export const HomePage = () => {

@@ -1,10 +1,26 @@
+'use client';
+import { useState } from 'react';
 import { Tooltip } from 'react-tooltip';
 
 import { AccountIcon, AppsIcon, SettingsIcon, SupportIcon } from '@/shared/ui';
 
+import { SettingsModal } from '@/entities';
+
 import styles from './ControlsSections.module.css';
 
 export const ControlsSection = () => {
+  const [showSettingsModal, setShowSettingsModal] = useState<boolean>(false);
+
+  const toggleModal = () => setShowSettingsModal((prevState) => !prevState);
+
+  const onSettingsClick = () => toggleModal();
+
+  const onAppsClick = () => console.log('click on apps');
+
+  const onSupportClick = () => console.log('click on support');
+
+  const onAccountClick = () => console.log('click on account');
+
   return (
     <div className='flex items-center gap-5 pr-10'>
       <a
@@ -13,8 +29,11 @@ export const ControlsSection = () => {
         data-tooltip-content='Settings'
         data-tooltip-place='bottom'
       >
+        <SettingsModal open={showSettingsModal} onClose={toggleModal} />
         <Tooltip id='settings' />
-        <SettingsIcon />
+        <div onClick={onSettingsClick}>
+          <SettingsIcon />
+        </div>
       </a>
       <a
         className={styles.controlButton}
@@ -23,7 +42,9 @@ export const ControlsSection = () => {
         data-tooltip-place='bottom'
       >
         <Tooltip id='apps' />
-        <AppsIcon />
+        <div onClick={onAppsClick}>
+          <AppsIcon />
+        </div>
       </a>
       <a
         className={styles.controlButton}
@@ -32,7 +53,9 @@ export const ControlsSection = () => {
         data-tooltip-place='bottom'
       >
         <Tooltip id='support' />
-        <SupportIcon />
+        <div onClick={onSupportClick}>
+          <SupportIcon />
+        </div>
       </a>
       <a
         className={styles.controlButton}
@@ -41,7 +64,9 @@ export const ControlsSection = () => {
         data-tooltip-place='bottom'
       >
         <Tooltip id='account' />
-        <AccountIcon />
+        <div onClick={onAccountClick}>
+          <AccountIcon />
+        </div>
       </a>
     </div>
   );
