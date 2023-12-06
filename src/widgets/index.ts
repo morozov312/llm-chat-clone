@@ -1,2 +1,2 @@
 export * from './navbar';
-export * from './chats-sidebar';
+export * from './chats';

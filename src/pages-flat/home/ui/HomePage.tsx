@@ -1,12 +1,10 @@
-import { ChatsSidebar, Navbar } from '@/widgets';
+import { Chats, Navbar } from '@/widgets';
 
 export const HomePage = () => {
   return (
     <div>
       <Navbar />
-      <div className='flex'>
-        <ChatsSidebar />
-      </div>
+      <Chats />
     </div>
   );
 };
