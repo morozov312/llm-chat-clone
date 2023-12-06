@@ -5,7 +5,3 @@
 .modalBody {
   @apply bg-gray-40 rounded-xl min-w-[300px];
 }
-
-.closeIcon {
-  @apply text-white;
-}
