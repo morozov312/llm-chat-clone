@@ -1,0 +1,11 @@
+.modalBg {
+  @apply bg-[rgba(86,88,105,.7)];
+}
+
+.modalBody {
+  @apply bg-gray-40 rounded-xl;
+}
+
+.closeIcon {
+  @apply text-white;
+}
