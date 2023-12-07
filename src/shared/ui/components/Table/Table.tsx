@@ -17,7 +17,7 @@ export const Table = ({ data }: IProps) => {
           {rows.map((headTitle, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <th
-              className='w-full p-3 border-[1px] border-gray-20 min-w-[250px]'
+              className='w-full sm:min-w-[100px] p-3 border-[1px] border-gray-20 lg:min-w-[250px]'
               key={headTitle + index}
             >
               {headTitle}
@@ -31,7 +31,7 @@ export const Table = ({ data }: IProps) => {
             {Object.entries(chartData).map((chartItem, indexRow) => (
               // eslint-disable-next-line react/no-array-index-key
               <th
-                className='w-full p-3 border-[1px] border-gray-20 min-w-[250px]'
+                className='w-full sm:min-w-[100px] p-3 border-[1px] border-gray-20 lg:min-w-[250px]'
                 key={indexCol + indexRow}
               >
                 {chartItem[1]}

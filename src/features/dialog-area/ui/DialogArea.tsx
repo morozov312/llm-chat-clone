@@ -51,7 +51,7 @@ export const DialogArea = ({ currentChat }: IProps) => {
             {'How can I help you today?'}
           </h2>
         ) : (
-          <div className='flex max-h-[95%] flex-col gap-5 overflow-x-hidden overflow-y-scroll'>
+          <div className='flex max-h-[95%] flex-col gap-5 overflow-y-scroll overflow-x-clip'>
             {dialogMessagesHistory.map((item, index) => (
               <ChatHistoryItem key={index.toString() + item.id} item={item} />
             ))}

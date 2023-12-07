@@ -12,8 +12,8 @@ export const ChatsSidebar = ({ chatList, onChatClick }: IProps) => {
   };
 
   return (
-    <aside className='flex min-w-[200px] flex-col gap-10 px-10 py-4'>
-      <div className='flex justify-between text-sm font-light text-gray-30'>
+    <aside className='flex flex-row min-w-[200px] lg:flex-col gap-10 px-10 py-4'>
+      <div className='flex justify-between items-center gap-3 text-sm font-light text-gray-30'>
         <span> {'Chat list'}</span>
         <button onClick={onAddNewChat}>
           <Tooltip id='new-chat' />

@@ -1,6 +1,14 @@
 import Markdown from 'react-markdown';
 import { Tooltip } from 'react-tooltip';
-import { Bar, BarChart, CartesianGrid, Legend, XAxis, YAxis } from 'recharts';
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Legend,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+} from 'recharts';
 
 import { Table } from '@/shared/ui';
 
@@ -23,26 +31,28 @@ export const ChatHistoryItem = ({ item }: IProps) => {
           <Markdown className='text-sm leading-7'>{item.content}</Markdown>
           {item.chartData && (
             <div>
-              <BarChart
-                width={500}
-                height={300}
-                data={chartData}
-                margin={{
-                  top: 30,
-                  right: 30,
-                  left: 70,
-                  bottom: 5,
-                }}
-              >
-                <CartesianGrid strokeDasharray='3 3' />
-                <XAxis dataKey='name' />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey='pv' fill='#8884d8' />
-                <Bar dataKey='uv' fill='#82ca9d' />
-              </BarChart>
-              <div className='flex ml-[30px] mt-6'>
+              <ResponsiveContainer width='85%' height={300}>
+                <BarChart
+                  width={450}
+                  height={300}
+                  data={chartData}
+                  margin={{
+                    top: 30,
+                    right: 30,
+                    left: 0,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray='3 3' />
+                  <XAxis dataKey='name' />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey='pv' fill='#8884d8' />
+                  <Bar dataKey='uv' fill='#82ca9d' />
+                </BarChart>
+              </ResponsiveContainer>
+              <div className='flex mt-6'>
                 <Table data={item.chartData} />
               </div>
             </div>
