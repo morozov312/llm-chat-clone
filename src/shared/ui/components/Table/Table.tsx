@@ -2,7 +2,6 @@ import { IChartData } from '@/entities';
 
 interface IProps {
   data: IChartData[];
-  tableColumnTitle?: string;
 }
 export const Table = ({ data }: IProps) => {
   if (data.length === 0) {
