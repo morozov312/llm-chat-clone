@@ -1,14 +1,7 @@
 import { nanoid } from 'nanoid';
 import { NextRequest } from 'next/server';
 
-import { getMockGraphData } from './getMockGraphData';
-
-export const createChatResponce = (content: string) => ({
-  id: nanoid(),
-  type: 'chat-responce',
-  content,
-  chartData: getMockGraphData(),
-});
+import { createChatResponce } from '@/app/api/chat';
 
 export const POST = async (req: NextRequest) => {
   const data = await req.json();
