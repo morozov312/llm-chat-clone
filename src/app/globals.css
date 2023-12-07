@@ -3,4 +3,13 @@
 @tailwind utilities;
 
 body {
+  @apply bg-black text-gray-10;
+}
+
+*::-webkit-scrollbar {
+  @apply bg-transparent w-[5px];
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply bg-gray-20 rounded-xl;
 }

@@ -1,0 +1,15 @@
+.formWrapper {
+  @apply flex flex-col py-5 gap-10 md:items-end;
+}
+
+.controlRow {
+  @apply flex items-center justify-between md:gap-52 py-4 md:ml-20;
+}
+
+.controlRow label {
+  @apply font-light;
+}
+
+.submitBtn {
+  @apply w-full md:w-1/4 bg-green-700 rounded-xl p-3 cursor-pointer hover:bg-green-600 transition-all;
+}

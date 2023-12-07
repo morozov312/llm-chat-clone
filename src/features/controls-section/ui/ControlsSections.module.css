@@ -1,0 +1,3 @@
+.controlButton {
+  @apply cursor-pointer;
+}

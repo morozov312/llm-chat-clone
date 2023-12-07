@@ -1,3 +1,4 @@
+'use client';
 import 'react-responsive-modal/styles.css';
 import { Modal as ReactModal, ModalProps } from 'react-responsive-modal';
 

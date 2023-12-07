@@ -1,0 +1,7 @@
+.row {
+  @apply flex justify-between border-[1px] border-gray-20;
+}
+
+.col {
+  @apply w-full sm:min-w-[100px] p-3 border-[1px] border-gray-20 lg:min-w-[250px];
+}
