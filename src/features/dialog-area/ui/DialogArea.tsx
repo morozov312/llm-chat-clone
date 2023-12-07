@@ -1,7 +1,8 @@
 'use client';
+import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { v4 as uuidv4 } from 'uuid';
+
 import { TopArrowIcon } from '@/shared/ui';
 
 import { ChatHistoryItem, IChatHistoryItem, sendMessage } from '@/entities';
@@ -29,7 +30,7 @@ export const DialogArea = ({ currentChat }: IProps) => {
     setDialogMessagesHistory((prevState) => [
       ...prevState,
       {
-        id: uuidv4(),
+        id: nanoid(),
         type: 'user-request',
         content: data.promptInput,
       },
@@ -50,7 +51,7 @@ export const DialogArea = ({ currentChat }: IProps) => {
             {'How can I help you today?'}
           </h2>
         ) : (
-          <div className='flex max-h-[95%] flex-col gap-5 overflow-y-scroll overflow-x-hidden'>
+          <div className='flex max-h-[95%] flex-col gap-5 overflow-x-hidden overflow-y-scroll'>
             {dialogMessagesHistory.map((item, index) => (
               <ChatHistoryItem key={index.toString() + item.id} item={item} />
             ))}

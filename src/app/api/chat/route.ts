@@ -1,5 +1,6 @@
+import { nanoid } from 'nanoid';
 import { NextRequest } from 'next/server';
-import { v4 as uuidv4 } from 'uuid';
+
 import { getMockGraphData } from './getMockGraphData';
 
 export const POST = async (req: NextRequest) => {
@@ -12,7 +13,7 @@ export const POST = async (req: NextRequest) => {
     case 'give me a snapshot of this weeks dau how does it compare to last week':
       return new Response(
         JSON.stringify({
-          id: uuidv4(),
+          id: nanoid(),
           type: 'chat-responce',
           content: `**Summary:**  
               This week's Daily Active Users (DAU) have shown a notable increase of 18% compared to last week.  
@@ -22,6 +23,7 @@ export const POST = async (req: NextRequest) => {
               **Key Insights:**  
               Growth: An 18% increase in DAU compared to last week reflects a growing user base and heightened engagement.`,
           chartData: getMockGraphData(),
+          tableColumnTitle: 'Pages',
         }),
       );
     case 'how engaged are our users based on average session duration compared with last week':
@@ -35,7 +37,7 @@ export const POST = async (req: NextRequest) => {
     default:
       return new Response(
         JSON.stringify({
-          id: uuidv4(),
+          id: nanoid(),
           type: 'chat-responce',
           content: 'I dont know the answer to your question',
         }),

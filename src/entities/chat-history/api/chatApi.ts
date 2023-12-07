@@ -9,8 +9,8 @@ export const sendMessage = async (
       body: JSON.stringify(message),
     });
     return await res.json();
-  } catch (e: any) {
-    console.error('chat api error', e.message);
+  } catch {
+    console.error('chat api error');
   }
   return null;
 };

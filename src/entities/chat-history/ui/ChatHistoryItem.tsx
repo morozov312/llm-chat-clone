@@ -1,40 +1,49 @@
-import React from 'react';
-import { IChatHistoryItem } from '@/entities';
 import Markdown from 'react-markdown';
-import { Bar, BarChart, CartesianGrid, Legend, XAxis, YAxis } from 'recharts';
 import { Tooltip } from 'react-tooltip';
+import { Bar, BarChart, CartesianGrid, Legend, XAxis, YAxis } from 'recharts';
+
+import { Table } from '@/shared/ui';
+
+import { IChatHistoryItem } from '@/entities';
 
 interface IProps {
   item: IChatHistoryItem;
 }
 
 export const ChatHistoryItem = ({ item }: IProps) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const chartData = item?.chartData as any;
   switch (item.type) {
     case 'chat-responce':
       return (
         <div className='flex flex-col gap-2 leading-7'>
           <span className='font-bold'>{'Chat'}</span>
-          <Markdown className='leading-7 text-sm'>{item.content}</Markdown>
+          <Markdown className='text-sm leading-7'>{item.content}</Markdown>
           {item.chartData && (
-            <BarChart
-              width={500}
-              height={300}
-              data={item.chartData as any}
-              margin={{
-                top: 30,
-                right: 30,
-                left: 70,
-                bottom: 5,
-              }}
-            >
-              <CartesianGrid strokeDasharray='3 3' />
-              <XAxis dataKey='name' />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey='pv' fill='#8884d8' />
-              <Bar dataKey='uv' fill='#82ca9d' />
-            </BarChart>
+            <div>
+              <BarChart
+                width={500}
+                height={300}
+                data={chartData}
+                margin={{
+                  top: 30,
+                  right: 30,
+                  left: 70,
+                  bottom: 5,
+                }}
+              >
+                <CartesianGrid strokeDasharray='3 3' />
+                <XAxis dataKey='name' />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey='pv' fill='#8884d8' />
+                <Bar dataKey='uv' fill='#82ca9d' />
+              </BarChart>
+              <div>
+                <Table data={item.chartData} />
+              </div>
+            </div>
           )}
         </div>
       );
