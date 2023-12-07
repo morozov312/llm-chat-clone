@@ -5,7 +5,7 @@ import { uuid } from 'uuidv4';
 
 import { TopArrowIcon } from '@/shared/ui';
 
-import { IChatHistoryItem } from '@/entities';
+import { IChatHistoryItem, sendMessage } from '@/entities';
 
 type Inputs = {
   promptInput: string;
@@ -28,10 +28,6 @@ export const DialogArea = ({ currentChat }: IProps) => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     reset();
-    const res = await fetch('/api/chat', {
-      method: 'POST',
-      body: JSON.stringify(data),
-    });
     setDialogMessagesHistory((prevState) => [
       ...prevState,
       {
@@ -40,8 +36,11 @@ export const DialogArea = ({ currentChat }: IProps) => {
         content: data.promptInput,
       },
     ]);
-
-    console.log(data, res);
+    const chatResponce = await sendMessage(data.promptInput);
+    if (chatResponce) {
+      // push in state array
+      console.log('res', chatResponce);
+    }
   };
 
   return (

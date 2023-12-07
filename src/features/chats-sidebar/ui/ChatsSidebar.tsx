@@ -29,7 +29,11 @@ export const ChatsSidebar = ({ chatList, onChatClick }: IProps) => {
       </div>
       <ul className='flex flex-col gap-5'>
         {chatList?.map((chat) => (
-          <li onClick={() => onChatClick?.(chat)} key={chat}>
+          <li
+            className='hover:bg-gray-40 px-4 py-2 rounded-xl transition-all'
+            onClick={() => onChatClick?.(chat)}
+            key={chat}
+          >
             {chat}
           </li>
         ))}
