@@ -1,8 +1,11 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { v4 as uuid } from 'uuid';
 
 import { TopArrowIcon } from '@/shared/ui';
+
+import { IChatHistoryItem } from '@/entities';
 
 type Inputs = {
   promptInput: string;
@@ -14,9 +17,9 @@ interface IProps {
 
 export const DialogArea = ({ currentChat }: IProps) => {
   const { register, handleSubmit, reset } = useForm<Inputs>();
-  const [dialogMessagesHistory, setDialogMessagesHistory] = useState<string[]>(
-    [],
-  );
+  const [dialogMessagesHistory, setDialogMessagesHistory] = useState<
+    IChatHistoryItem[]
+  >([]);
 
   useEffect(() => {
     // clear history if chat changed
@@ -29,6 +32,15 @@ export const DialogArea = ({ currentChat }: IProps) => {
       method: 'POST',
       body: JSON.stringify(data),
     });
+    setDialogMessagesHistory((prevState) => [
+      ...prevState,
+      {
+        id: uuid(),
+        type: 'user-request',
+        content: data.promptInput,
+      },
+    ]);
+
     console.log(data, res);
   };
 
@@ -40,7 +52,11 @@ export const DialogArea = ({ currentChat }: IProps) => {
             {'How can I help you today?'}
           </h2>
         ) : (
-          <div></div>
+          <div className='flex max-h-[95%] flex-col gap-5 overflow-scroll'>
+            {dialogMessagesHistory.map((item) => (
+              <span key={item.id}>{item.content}</span>
+            ))}
+          </div>
         )}
       </div>
       <form
