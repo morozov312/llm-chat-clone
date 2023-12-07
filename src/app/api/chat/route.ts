@@ -1,27 +1,26 @@
 import { NextRequest } from 'next/server';
-import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 import { getMockGraphData } from './getMockGraphData';
 
 export const POST = async (req: NextRequest) => {
   const data = await req.json();
 
   // convert to a single case and remove punctuation marks
-  const normalizeData = data.toLowerCase().replaceAll(/[^a-zA-z0-9\s]+/g, '');
+  const normalizedData = data.toLowerCase().replaceAll(/[^a-zA-z0-9\s]+/g, '');
 
-  switch (normalizeData) {
+  switch (normalizedData) {
     case 'give me a snapshot of this weeks dau how does it compare to last week':
       return new Response(
         JSON.stringify({
-          id: uuid(),
+          id: uuidv4(),
           type: 'chat-responce',
           content: `**Summary:**  
-              This week's Daily Active Users (DAU) have shown a notable increase of <font
-              color="lt-cyan">18%</font> compared to last week.  
+              This week's Daily Active Users (DAU) have shown a notable increase of 18% compared to last week.  
               **Detailed Breakdown:**  
-              - This Week: 26,000 DAU <font color="lt-cyan">(↑18% from the previous week)</font>
+              - This Week: 26,000 DAU (↑18% from the previous week)
               - Last Week: 22,000 DAU  
               **Key Insights:**  
-              Growth: An <font color="lt-cyan">18%</font> increase in DAU compared to last week reflects a growing user base and heightened engagement.`,
+              Growth: An 18% increase in DAU compared to last week reflects a growing user base and heightened engagement.`,
           chartData: getMockGraphData(),
         }),
       );
@@ -36,6 +35,8 @@ export const POST = async (req: NextRequest) => {
     default:
       return new Response(
         JSON.stringify({
+          id: uuidv4(),
+          type: 'chat-responce',
           content: 'I dont know the answer to your question',
         }),
       );

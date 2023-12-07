@@ -1,11 +1,10 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { uuid } from 'uuidv4';
-
+import { v4 as uuidv4 } from 'uuid';
 import { TopArrowIcon } from '@/shared/ui';
 
-import { IChatHistoryItem, sendMessage } from '@/entities';
+import { ChatHistoryItem, IChatHistoryItem, sendMessage } from '@/entities';
 
 type Inputs = {
   promptInput: string;
@@ -27,21 +26,24 @@ export const DialogArea = ({ currentChat }: IProps) => {
   }, [currentChat]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    reset();
     setDialogMessagesHistory((prevState) => [
       ...prevState,
       {
-        id: uuid(),
+        id: uuidv4(),
         type: 'user-request',
         content: data.promptInput,
       },
     ]);
+    reset({ promptInput: '' });
+    await new Promise((res) => setTimeout(res, 500));
     const chatResponce = await sendMessage(data.promptInput);
     if (chatResponce) {
       // push in state array
-      console.log('res', chatResponce);
+      setDialogMessagesHistory((prevState) => [...prevState, chatResponce]);
     }
   };
+
+  console.log(dialogMessagesHistory);
 
   return (
     <main className='mr-10 flex h-full w-full flex-col justify-between rounded-xl bg-gray-40 p-10'>
@@ -52,8 +54,8 @@ export const DialogArea = ({ currentChat }: IProps) => {
           </h2>
         ) : (
           <div className='flex max-h-[95%] flex-col gap-5 overflow-scroll'>
-            {dialogMessagesHistory.map((item) => (
-              <span key={item.id}>{item.content}</span>
+            {dialogMessagesHistory.map((item, index) => (
+              <ChatHistoryItem key={index.toString() + item.id} item={item} />
             ))}
           </div>
         )}
@@ -63,6 +65,7 @@ export const DialogArea = ({ currentChat }: IProps) => {
         className='flex w-full items-center rounded-xl border-[1px] border-gray-10 p-3'
       >
         <input
+          autoComplete='off'
           placeholder='Write a message'
           className='h-fit w-full border-none bg-transparent outline-0'
           type='text'

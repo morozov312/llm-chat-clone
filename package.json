@@ -28,6 +28,7 @@
     "recharts": "^2.10.3",
     "tailwindcss": "3.3.6",
     "typescript": "5.3.2",
+    "uuid": "^9.0.1",
     "uuidv4": "^6.2.13"
   },
   "devDependencies": {
