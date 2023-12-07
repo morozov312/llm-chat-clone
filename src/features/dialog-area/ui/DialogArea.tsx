@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { v4 as uuid } from 'uuid';
+import { uuid } from 'uuidv4';
 
 import { TopArrowIcon } from '@/shared/ui';
 
