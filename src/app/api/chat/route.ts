@@ -3,6 +3,13 @@ import { NextRequest } from 'next/server';
 
 import { getMockGraphData } from './getMockGraphData';
 
+export const createChatResponce = (content: string) => ({
+  id: nanoid(),
+  type: 'chat-responce',
+  content,
+  chartData: getMockGraphData(),
+});
+
 export const POST = async (req: NextRequest) => {
   const data = await req.json();
 
@@ -12,26 +19,20 @@ export const POST = async (req: NextRequest) => {
   switch (normalizedData) {
     case 'give me a snapshot of this weeks dau how does it compare to last week':
       return new Response(
-        JSON.stringify({
-          id: nanoid(),
-          type: 'chat-responce',
-          content: `**Summary:**  
+        JSON.stringify(
+          createChatResponce(`**Summary:**  
               This week's Daily Active Users (DAU) have shown a notable increase of 18% compared to last week.  
               **Detailed Breakdown:**  
               - This Week: 26,000 DAU (↑18% from the previous week)
               - Last Week: 22,000 DAU  
               **Key Insights:**  
-              Growth: An 18% increase in DAU compared to last week reflects a growing user base and heightened engagement.`,
-          chartData: getMockGraphData(),
-          tableColumnTitle: 'Pages',
-        }),
+              Growth: An 18% increase in DAU compared to last week reflects a growing user base and heightened engagement.`),
+        ),
       );
     case 'how engaged are our users based on average session duration compared with last week':
       return new Response(
-        JSON.stringify({
-          id: nanoid(),
-          type: 'chat-responce',
-          content: `**Summary:**  
+        JSON.stringify(
+          createChatResponce(`**Summary:**  
               This week's Average Session Duration (ASD) shows a positive trend with an increase of 12% compared to last
               week.  
               **Detailed Breakdown:**  
@@ -39,16 +40,13 @@ export const POST = async (req: NextRequest) => {
               - Last Week's ASD: 28.5 minutes  
               **Key Insights:**  
               User Engagement: The increase in ASD indicates improved user engagement, with users spending more time
-              in the app compared to last week.`,
-          chartData: getMockGraphData(),
-        }),
+              in the app compared to last week.`),
+        ),
       );
     case 'provide an overview of this weeks iap revenue performance in comparison to the previous week':
       return new Response(
-        JSON.stringify({
-          id: nanoid(),
-          type: 'chat-responce',
-          content: `**Summary:**  
+        JSON.stringify(
+          createChatResponce(`**Summary:**  
               This week's In-App Purchase (IAP) revenue shows a promising increase, up by 14% compared to the previous
               week.  
               **Detailed Breakdown:**  
@@ -56,16 +54,13 @@ export const POST = async (req: NextRequest) => {
               - Last Week's IAP Revenue: $83,300  
               **Key Insights:**  
               The increase in IAP Revenue suggests that users are increasingly engaging with our in-app purchases, which is
-              contributing to our revenue growth.`,
-          chartData: getMockGraphData(),
-        }),
+              contributing to our revenue growth.`),
+        ),
       );
     case 'explain the effect of media source on dau':
       return new Response(
-        JSON.stringify({
-          id: nanoid(),
-          type: 'chat-responce',
-          content: `**Summary:**  
+        JSON.stringify(
+          createChatResponce(`**Summary:**  
               Facebook and Google Ads driving the highest DAU, followed by TikTok and Organic installs. IronSource and
               Apple Search Ads, however, are lagging behind.  
               **Detailed Breakdown:**  
@@ -82,16 +77,13 @@ export const POST = async (req: NextRequest) => {
               contributing significantly to the overall DAU.  
               3. IronSource and Apple Search Ads Dip: There's a slight decrease in DAU from IronSource and Apple
               Search Ads sources, indicating a need for further optimization or strategy change.  
-              `,
-          chartData: getMockGraphData(),
-        }),
+              `),
+        ),
       );
     case 'are there any other metrics that have significant changes this week':
       return new Response(
-        JSON.stringify({
-          id: nanoid(),
-          type: 'chat-responce',
-          content: `**Summary:**  
+        JSON.stringify(
+          createChatResponce(`**Summary:**  
               This week, apart from the rise in Daily Active Users and Average Session Duration, other key metrics such as
               Retention Rate and User Acquisition Cost have also seen significant shifts.
               **Detailed Breakdown:**  
@@ -102,9 +94,8 @@ export const POST = async (req: NextRequest) => {
               improved user satisfaction and engagement with our app.  
               Cost Efficiency: The User Acquisition Cost has decreased by 10%, implying that our user acquisition strategies
               have become more efficient.
-              `,
-          chartData: getMockGraphData(),
-        }),
+              `),
+        ),
       );
     default:
       return new Response(

@@ -1,5 +1,7 @@
 import { IChartData } from '@/entities';
 
+import styles from './Table.module.css';
+
 interface IProps {
   data: IChartData[];
 }
@@ -13,13 +15,10 @@ export const Table = ({ data }: IProps) => {
   return (
     <table>
       <thead>
-        <tr className='flex justify-between border-[1px] border-gray-20'>
+        <tr className={styles.row}>
           {rows.map((headTitle, index) => (
             // eslint-disable-next-line react/no-array-index-key
-            <th
-              className='w-full sm:min-w-[100px] p-3 border-[1px] border-gray-20 lg:min-w-[250px]'
-              key={headTitle + index}
-            >
+            <th className={styles.col} key={headTitle + index}>
               {headTitle}
             </th>
           ))}
@@ -27,13 +26,11 @@ export const Table = ({ data }: IProps) => {
       </thead>
       <tbody>
         {data.map((chartData, indexCol) => (
-          <tr className='flex  justify-between border-[1px] border-gray-20'>
+          // eslint-disable-next-line react/no-array-index-key
+          <tr key={indexCol} className={styles.row}>
             {Object.entries(chartData).map((chartItem, indexRow) => (
               // eslint-disable-next-line react/no-array-index-key
-              <th
-                className='w-full sm:min-w-[100px] p-3 border-[1px] border-gray-20 lg:min-w-[250px]'
-                key={indexCol + indexRow}
-              >
+              <th className={styles.col} key={indexCol + indexRow}>
                 {chartItem[1]}
               </th>
             ))}

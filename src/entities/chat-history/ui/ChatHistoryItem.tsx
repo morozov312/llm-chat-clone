@@ -52,7 +52,7 @@ export const ChatHistoryItem = ({ item }: IProps) => {
                   <Bar dataKey='uv' fill='#82ca9d' />
                 </BarChart>
               </ResponsiveContainer>
-              <div className='flex mt-6'>
+              <div className='mt-6 flex'>
                 <Table data={item.chartData} />
               </div>
             </div>
