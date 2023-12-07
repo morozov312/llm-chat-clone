@@ -11,8 +11,10 @@ interface IProps {
 }
 
 export const ChatHistoryItem = ({ item }: IProps) => {
+  // library for graphs is not typed
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const chartData = item?.chartData as any;
+
   switch (item.type) {
     case 'chat-responce':
       return (
@@ -40,7 +42,7 @@ export const ChatHistoryItem = ({ item }: IProps) => {
                 <Bar dataKey='pv' fill='#8884d8' />
                 <Bar dataKey='uv' fill='#82ca9d' />
               </BarChart>
-              <div>
+              <div className='flex ml-[30px] mt-6'>
                 <Table data={item.chartData} />
               </div>
             </div>

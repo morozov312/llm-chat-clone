@@ -39,7 +39,7 @@ export const POST = async (req: NextRequest) => {
         JSON.stringify({
           id: nanoid(),
           type: 'chat-responce',
-          content: 'I dont know the answer to your question',
+          content: 'I dont know the answer to your question.',
         }),
       );
   }
