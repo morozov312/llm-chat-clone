@@ -6,10 +6,10 @@ body {
   @apply bg-black text-gray-10;
 }
 
-::-webkit-scrollbar {
-  width: 0;
+*::-webkit-scrollbar {
+  @apply bg-transparent w-[5px];
 }
 
-.markdown > * {
-  all: revert;
+*::-webkit-scrollbar-thumb {
+  @apply bg-gray-20 rounded-xl;
 }

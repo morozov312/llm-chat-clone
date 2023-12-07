@@ -35,6 +35,7 @@
     "@feature-sliced/eslint-config": "^0.1.0-beta.6",
     "@feature-sliced/eslint-plugin-messages": "^0.1.0-beta.2",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/recharts": "^1.8.28",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",
     "eslint-config-prettier": "^9.1.0",

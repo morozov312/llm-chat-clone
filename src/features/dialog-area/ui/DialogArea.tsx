@@ -38,12 +38,9 @@ export const DialogArea = ({ currentChat }: IProps) => {
     await new Promise((res) => setTimeout(res, 500));
     const chatResponce = await sendMessage(data.promptInput);
     if (chatResponce) {
-      // push in state array
       setDialogMessagesHistory((prevState) => [...prevState, chatResponce]);
     }
   };
-
-  console.log(dialogMessagesHistory);
 
   return (
     <main className='mr-10 flex h-full w-full flex-col justify-between rounded-xl bg-gray-40 p-10'>
@@ -53,7 +50,7 @@ export const DialogArea = ({ currentChat }: IProps) => {
             {'How can I help you today?'}
           </h2>
         ) : (
-          <div className='flex max-h-[95%] flex-col gap-5 overflow-scroll'>
+          <div className='flex max-h-[95%] flex-col gap-5 overflow-y-scroll overflow-x-hidden'>
             {dialogMessagesHistory.map((item, index) => (
               <ChatHistoryItem key={index.toString() + item.id} item={item} />
             ))}
