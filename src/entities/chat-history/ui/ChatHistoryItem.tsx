@@ -1,6 +1,6 @@
+import { useId } from 'react';
 import { IChatHistoryItem } from '@/entities';
 import Markdown from 'react-markdown';
-import { useId } from 'react';
 
 interface IProps {
   item: IChatHistoryItem;
